@@ -38,6 +38,9 @@ ApiRoute::version('v1', function(){
 	ApiRoute::group(['prefix' => 'web', 'namespace' => 'App\Http\Controllers\Web'], function(){
 
 		ApiRoute::get('products','ProductController@show');
+		ApiRoute::group('order',function(){
+			ApiRoute::post('place','OrderController@place');
+		})
 	});
 
 });
