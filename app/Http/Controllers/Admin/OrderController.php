@@ -43,13 +43,13 @@ class OrderController extends Controller
                         ->where('status',1)
                         ->groupBy('created')
                         ->orderBy('created','asc')
-                        ->take(10)
+                        // ->take(10)
                         ->get();
         $data['cancelled'] = Order::select(\DB::raw('created,status,count(id) as total'))
                         ->where('status',6)
                         ->groupBy('created')
                         ->orderBy('created','asc')
-                        ->take(10)
+                        // ->take(10)
                         ->get();
 
         $dat=[];
