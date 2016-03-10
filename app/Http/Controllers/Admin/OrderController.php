@@ -33,23 +33,33 @@ use App\regionproduct;
 class OrderController extends Controller
 {
 
-    public function all()
+    public function cells()
     {
-        return $this->response->paginator(Order::paginate());
+        $data = Order::select(\DB::raw('count(id) as n,status'))
+                        ->groupBy('status')
+                        ->get();
+        $dat = [];
+        foreach ($data as $value) {
+        	$dat['status_'.$value->status] = $value->n;
+        }
+
+        return $dat;
     }
+
+
     public function stats()
 	{
         $data['delivered'] = Order::select(\DB::raw('created,status,count(id) as total'))
                         ->where('status',1)
                         ->groupBy('created')
                         ->orderBy('created','asc')
-                        // ->take(10)
+                        ->take(10)
                         ->get();
         $data['cancelled'] = Order::select(\DB::raw('created,status,count(id) as total'))
                         ->where('status',6)
                         ->groupBy('created')
                         ->orderBy('created','asc')
-                        // ->take(10)
+                        ->take(10)
                         ->get();
 
         $dat=[];
@@ -79,106 +89,51 @@ class OrderController extends Controller
         ];
         return $this->response->array($data);
 	}
-    
-    public function place(Request $request)
-    {
-        // print_r($request->product[0]);
-        // dd('sd');
 
-        // $this->validateInput();
-
-        $this->validate($request, [
-            'form.name' => 'required|max:50',
-            'form.email' => 'required|email',
-            'form.phone' => 'required|numeric'
-        ]);
-
-    	$order = new Order;
-
-        $order->customer_name = $request->form['name'];
-        $order->customer_email = $request->form['email'];
-        $order->customer_number = $request->form['phone'];
-
-        $order->region_id = 1;
-        $products = [];
-
-        foreach($request->products as $p)
-        {
-            $product = Product::where('code',$p['code'])
-                            ->join('region_products as rp','rp.product_id','=','products.id')
-                            ->where('rp.region_id',1)
-                            ->first();
-
-            $product->quantity = intval($p['qty']);
-            $product->price = $product->price * intval($p['qty']);
-            $product->discount = $product->discount * intval($p['qty']);
-
-            // Attributes to do mass storage in Order_products
-            $product->product_name = $product->name;
-            $product->product_code = $product->code;
-
-
-            $products[] = $product;
-
-        }
-
-        $products = collect($products);
-
-        $order->total = $products->sum('price');
-        $order->discount =  $products->sum('discount');
-
-        $order->save();
-
-        //Raw products list to send on Slack
-        $raw_products = "";
-
-        $products = $products->toArray();
-
-        foreach ($products as $product) {
-            $product['order_id'] = $order->id;
-            orderProduct::create($product);
-
-            $raw_products .= "\n" .$product['name']  ."|  qty: ".$product['quantity'] ."| price: Rs.". ($product['price'] - $product['discount']);
-        }
-
-
-
-       event(new OrderPlaced($order,$raw_products));
-
-        return response()->json([$order->price, $order->status]);
-
-
-
-
-    }
-
+	public function show($id)
+	{
+		$order = Order::where('id',$id)->with('products')->get();
+		if(!$order->isEmpty())
+			return ($order);
+		else
+			return $this->response->errorNotFound();
+	}
     public function cancel($id){
-    	$order = Order::where('id' ,$id)->update(['status' => 5]);
+    	$order = Order::where('id' ,$id)->update(['status' => 6]);
 
     	if($order)
-    		return response()->json(['status' => 'success']);
+    		return $this->response->array([1]);
     }
 
-    public function generateOTP($number){
-    	$otp = 'ABCD';
-    	
-    	$number = Number::firstOrNew(['number' => $number]);
 
-    	$number->otp = $otp;
-    	$number->save();
-    }
-
-    public function verifyOTP($number,$otp)
+    public function verify($id)
     {
-    	$number = Number::where($number)->first();
+    	$order = Order::where('id',$id)->update(['status' => 2]);
     	
-    	if($number->otp == $otp)
-    	{
-    		$number->status = 1;
-    		$number->save();
-    	}
+    	if($order)
+    		return $this->response->noContent();
     	else
-    		return response('Invalid either OTP or mobile', 400);
+    		return $this->response->errorBadRequest(' Invalid Order');
+    }
+
+    public function proccess($id)
+    {
+    	$order = Order::where('id',$id)->update(['status' => 3]);
+    	
+    	if($order)
+    		return $this->response->noContent();
+    	else
+    		return $this->response->errorBadRequest(' Invalid Order');
+    }
+
+    public function delivered($id)
+    {
+    	$order = Order::where('id',$id)->update(['status' => 5]);
+    	
+    	if($order)
+    		return $this->response->noContent();
+    	else
+    		return $this->response->errorBadRequest(' Invalid Order');
     }
 
 }

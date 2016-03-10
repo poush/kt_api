@@ -47,6 +47,8 @@ ApiRoute::version('v1', function(){
 
 			ApiRoute::get('/','OrderController@all');
 			ApiRoute::get('stats','OrderController@stats');
+			ApiRoute::get('cells','OrderController@cells');
+			ApiRoute::get('{id}','OrderController@show');
 
 		});
 
@@ -55,6 +57,7 @@ ApiRoute::version('v1', function(){
 	ApiRoute::group(['prefix' => 'web', 'namespace' => 'App\Http\Controllers\Web'], function(){
 
 		ApiRoute::get('products','ProductController@show');
+
 		ApiRoute::group(['prefix' => 'orders'],function(){
 			ApiRoute::post('place','OrderController@place');
 		});
