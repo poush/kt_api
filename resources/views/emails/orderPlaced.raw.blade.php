@@ -3,197 +3,6 @@
     <head>
          <title>Kharid To Yaar!!</title>
          <style type="text/css">
-         /*!
- * Bootstrap v3.3.5 (http://getbootstrap.com)
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
-
-/*!
- * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=2b3dd947fff32384237d)
- * Config saved to config.json and https://gist.github.com/2b3dd947fff32384237d
- */
-/*!
- * Bootstrap v3.3.6 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
-/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-html {
-  font-family: sans-serif;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-body {
-  margin: 0;
-}
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-main,
-menu,
-nav,
-section,
-summary {
-  display: block;
-}
-audio,
-canvas,
-progress,
-video {
-  display: inline-block;
-  vertical-align: baseline;
-}
-audio:not([controls]) {
-  display: none;
-  height: 0;
-}
-[hidden],
-template {
-  display: none;
-}
-a {
-  background-color: transparent;
-}
-a:active,
-a:hover {
-  outline: 0;
-}
-abbr[title] {
-  border-bottom: 1px dotted;
-}
-b,
-strong {
-  font-weight: bold;
-}
-dfn {
-  font-style: italic;
-}
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
-mark {
-  background: #ff0;
-  color: #000;
-}
-small {
-  font-size: 80%;
-}
-sub,
-sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-sup {
-  top: -0.5em;
-}
-sub {
-  bottom: -0.25em;
-}
-img {
-  border: 0;
-}
-svg:not(:root) {
-  overflow: hidden;
-}
-figure {
-  margin: 1em 40px;
-}
-hr {
-  -webkit-box-sizing: content-box;
-     -moz-box-sizing: content-box;
-          box-sizing: content-box;
-  height: 0;
-}
-pre {
-  overflow: auto;
-}
-code,
-kbd,
-pre,
-samp {
-  font-family: monospace, monospace;
-  font-size: 1em;
-}
-button,
-input,
-optgroup,
-select,
-textarea {
-  color: inherit;
-  font: inherit;
-  margin: 0;
-}
-button {
-  overflow: visible;
-}
-button,
-select {
-  text-transform: none;
-}
-button,
-html input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-  -webkit-appearance: button;
-  cursor: pointer;
-}
-button[disabled],
-html input[disabled] {
-  cursor: default;
-}
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-  border: 0;
-  padding: 0;
-}
-input {
-  line-height: normal;
-}
-input[type="checkbox"],
-input[type="radio"] {
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 0;
-}
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  height: auto;
-}
-input[type="search"] {
-  -webkit-appearance: textfield;
-  -webkit-box-sizing: content-box;
-     -moz-box-sizing: content-box;
-          box-sizing: content-box;
-}
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
-fieldset {
-  border: 1px solid #c0c0c0;
-  margin: 0 2px;
-  padding: 0.35em 0.625em 0.75em;
-}
-legend {
-  border: 0;
-  padding: 0;
-}
-textarea {
-  overflow: auto;
-}
-optgroup {
-  font-weight: bold;
-}
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -213,97 +22,7 @@ th {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-html {
-  font-size: 10px;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #333333;
-  background-color: #ffffff;
-}
-input,
-button,
-select,
-textarea {
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-}
-a {
-  color: #337ab7;
-  text-decoration: none;
-}
-a:hover,
-a:focus {
-  color: #23527c;
-  text-decoration: underline;
-}
-a:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-figure {
-  margin: 0;
-}
-img {
-  vertical-align: middle;
-}
-.img-responsive {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-.img-rounded {
-  border-radius: 6px;
-}
-.img-thumbnail {
-  padding: 4px;
-  line-height: 1.42857143;
-  background-color: #ffffff;
-  border: 1px solid #dddddd;
-  border-radius: 4px;
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  display: inline-block;
-  max-width: 100%;
-  height: auto;
-}
-.img-circle {
-  border-radius: 50%;
-}
-hr {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border: 0;
-  border-top: 1px solid #eeeeee;
-}
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-.sr-only-focusable:active,
-.sr-only-focusable:focus {
-  position: static;
-  width: auto;
-  height: auto;
-  margin: 0;
-  overflow: visible;
-  clip: auto;
-}
-[role="button"] {
-  cursor: pointer;
-}
+
 table {
   background-color: transparent;
 }
@@ -378,17 +97,6 @@ th {
 }
 .table-hover > tbody > tr:hover {
   background-color: #f5f5f5;
-}
-table col[class*="col-"] {
-  position: static;
-  float: none;
-  display: table-column;
-}
-table td[class*="col-"],
-table th[class*="col-"] {
-  position: static;
-  float: none;
-  display: table-cell;
 }
 .table > thead > tr > td.active,
 .table > tbody > tr > td.active,
@@ -495,119 +203,32 @@ table th[class*="col-"] {
 .table-hover > tbody > tr.danger:hover > th {
   background-color: #ebcccc;
 }
-.table-responsive {
-  overflow-x: auto;
-  min-height: 0.01%;
-}
-@media screen and (max-width: 767px) {
-  .table-responsive {
-    width: 100%;
-    margin-bottom: 15px;
-    overflow-y: hidden;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-    border: 1px solid #dddddd;
-  }
-  .table-responsive > .table {
-    margin-bottom: 0;
-  }
-  .table-responsive > .table > thead > tr > th,
-  .table-responsive > .table > tbody > tr > th,
-  .table-responsive > .table > tfoot > tr > th,
-  .table-responsive > .table > thead > tr > td,
-  .table-responsive > .table > tbody > tr > td,
-  .table-responsive > .table > tfoot > tr > td {
-    white-space: nowrap;
-  }
-  .table-responsive > .table-bordered {
-    border: 0;
-  }
-  .table-responsive > .table-bordered > thead > tr > th:first-child,
-  .table-responsive > .table-bordered > tbody > tr > th:first-child,
-  .table-responsive > .table-bordered > tfoot > tr > th:first-child,
-  .table-responsive > .table-bordered > thead > tr > td:first-child,
-  .table-responsive > .table-bordered > tbody > tr > td:first-child,
-  .table-responsive > .table-bordered > tfoot > tr > td:first-child {
-    border-left: 0;
-  }
-  .table-responsive > .table-bordered > thead > tr > th:last-child,
-  .table-responsive > .table-bordered > tbody > tr > th:last-child,
-  .table-responsive > .table-bordered > tfoot > tr > th:last-child,
-  .table-responsive > .table-bordered > thead > tr > td:last-child,
-  .table-responsive > .table-bordered > tbody > tr > td:last-child,
-  .table-responsive > .table-bordered > tfoot > tr > td:last-child {
-    border-right: 0;
-  }
-  .table-responsive > .table-bordered > tbody > tr:last-child > th,
-  .table-responsive > .table-bordered > tfoot > tr:last-child > th,
-  .table-responsive > .table-bordered > tbody > tr:last-child > td,
-  .table-responsive > .table-bordered > tfoot > tr:last-child > td {
-    border-bottom: 0;
-  }
-}
-.clearfix:before,
-.clearfix:after {
-  content: " ";
-  display: table;
-}
-.clearfix:after {
-  clear: both;
-}
-.center-block {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-.pull-right {
-  float: right !important;
-}
-.pull-left {
-  float: left !important;
-}
-.hide {
-  display: none !important;
-}
-.show {
-  display: block !important;
-}
-.invisible {
-  visibility: hidden;
-}
-.text-hide {
-  font: 0/0 a;
-  color: transparent;
-  text-shadow: none;
-  background-color: transparent;
-  border: 0;
-}
-.hidden {
-  display: none !important;
-}
-.affix {
-  position: fixed;
-}
-
-         </style>
+        </style>
     </head>
     <body>
         <img src="http://kharidto.com/assets/images/logo.png" alt="KharidTo" width="250px" />
         <h2 align="left">Hello Customer,</h2>
         <p>Thank you for placing your order. This E-Mail confirms that we have received your order.</p>
         <p>Your order details are as follows:</p>
-        <table class="table table-striped">
+        <table class="table">
             <thead>
-                <th>Order No.</th>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Rate</th>
-                <th>Amount</th>
+                <tr>
+                	<th>Order No.</th>
+                	<th>Product</th>
+                	<th>Quantity</th>
+                	<th>Rate</th>
+                	<th>Amount</th>
+                </tr>
             </thead>
-            <tr>
-                <td>example</td>
-                <td>example</td>
-                <td>example</td>
-                <td>example</td>
-                <td>example</td>    
-            </tr>
+            <tbody>
+            	<tr>
+                	<td>example</td>
+                	<td>example</td>
+                	<td>example</td>
+                	<td>example</td>
+                	<td>example</td>    
+				</tr>
+			</tbody>
         </table>
 
         <p>Need To make changes to your order or cancel it? No worries, mail us at <i>care@kharidto.com</i></p>

@@ -34,6 +34,7 @@ class OrderPlacedListener
         );
         \Mail::send('emails.orderPlaced', ['data' => 'data'], function ($message) use($order) {
             $message->sender('do-not-reply@KhairdTo.com','KhairdTo.com');
+            $message->replyTo('do-not-reply@KhairdTo.com','KhairdTo.com');
             $message->subject("Your order at KhairdTo");
             $message->to($order->customer_email);
         });
