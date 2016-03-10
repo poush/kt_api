@@ -210,7 +210,7 @@ th {
         <h2 align="left">Hello Customer,</h2>
         <p>Thank you for placing your order. This E-Mail confirms that we have received your order.</p>
         <p>Your order details are as follows:</p>
-        <table class="table">
+        <table class="table tsble-bordered">
             <thead>
                 <tr>
                 	<th>Order No.</th>
