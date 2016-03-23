@@ -6,7 +6,7 @@ use Dingo\Api\Http\Request;
 use Dingo\Api\Transformer\Binding;
 use Dingo\Api\Contract\Transformer\Adapter;
 
-class OrdersTransformer extends \League\Fractal\TransformerAbstract
+class OrderTransformer extends \League\Fractal\TransformerAbstract
 {
     public function transform(\App\Order $order)
     {
@@ -27,9 +27,31 @@ class OrdersTransformer extends \League\Fractal\TransformerAbstract
 			'status_code'	=> $order->status,
 			'status'		=> $this->getStatus($order->status),
 			'purchased_on'	=> $order->created_at->toFormattedDateString(),
+            'products'      => $this->transformProducts($order->products),    
 			'deliveryBy'	=> is_null($order->deliveryBy)?"---":$order->deliveryBy,
 			'deliveredAt'	=> is_null($order->deliveredAt)?"---":$order->deliveredAt,
 
+    	];
+    }
+
+    private function transformProducts($products)
+    {
+    	$data = [];
+    	foreach ($products as $product) {
+    		$data[] = $this->transformProduct($product);
+    	}
+    	return $data;
+    }
+
+    private function transformProduct(\App\orderProduct $product)
+    {
+    	return [
+    		'code' 		=> $product->product_code,
+    		'qty' 		=> $product->quantity,
+    		'price' 	=> $product->price,
+    		'discount' 	=> $product->discount,
+    		'final' 	=> $product->final,
+    		'name'		=> $product->product_name
     	];
     }
 

@@ -106,8 +106,9 @@ class OrderController extends Controller
 	public function show($id)
 	{
 		$order = Order::where('id',$id)->with('products')->get();
-		if(!$order->isEmpty())
-			return ($order);
+		
+        if(!$order->isEmpty())
+            return $this->response->item($order->first(),new \App\Transformers\OrderTransformer);
 		else
 			return $this->response->errorNotFound();
 	}
