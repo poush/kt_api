@@ -43,7 +43,7 @@ class OrderController extends Controller
 {
     public function index(){
         $orders = Order::with('products')->paginate();
-        return $this->response->paginator($orders, new OrdersTransformer);
+        return $this->response->paginator($orders, new \App\Transformers\OrdersTransformer);
     }
 
     public function cells()
