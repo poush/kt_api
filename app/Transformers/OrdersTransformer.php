@@ -26,10 +26,9 @@ class OrdersTransformer extends \League\Fractal\TransformerAbstract
 			],
 			'status_code'	=> $order->status,
 			'status'		=> $this->getStatus($order->status),
-			'products'		=> $this->transformProducts($order->products),
-			'purchased_on'	=> $order->created_at->toDateString(),
-			'deliveryBy'	=> is_null($order->deliveryBy)?"":$order->deliveryBy,
-			'deliveredAt'	=> is_null($order->deliveredAt)?"":$order->deliveredAt,
+			'purchased_on'	=> $order->created_at->toFormattedDateString(),
+			'deliveryBy'	=> is_null($order->deliveryBy)?"---":$order->deliveryBy,
+			'deliveredAt'	=> is_null($order->deliveredAt)?"---":$order->deliveredAt,
 
     	];
     }

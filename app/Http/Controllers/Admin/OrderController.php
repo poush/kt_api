@@ -42,7 +42,7 @@ use App\TransFormers\OrdersTransformer;
 class OrderController extends Controller
 {
     public function index(){
-        $orders = Order::with('products')->paginate();
+        $orders = Order::orderBy('created_at','desc')->paginate(12);
         return $this->response->paginator($orders, new \App\Transformers\OrdersTransformer);
     }
 
