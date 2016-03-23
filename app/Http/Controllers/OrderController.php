@@ -74,7 +74,7 @@ class OrderController extends Controller
             $product->quantity = intval($p['qty']);
             $product->price = $product->price * intval($p['qty']);
             $product->discount = $product->discount * intval($p['qty']);
-            $product->final = $product->price - $product->discount;
+            $product->final = intval($product->price) - intval($product->discount);
 
             // Attributes to do mass storage in Order_products
             $product->product_name = $product->name;
