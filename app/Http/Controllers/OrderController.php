@@ -89,7 +89,8 @@ class OrderController extends Controller
 
         $order->total = $products->sum('price');
         $order->discount =  $products->sum('discount');
-        $order->final = $order->total - $order->discount;
+        $order->final = 121212;
+        dd('sds');
         $order->created = \Carbon\Carbon::today()->toFormattedDateString();
         $order->save();
 
