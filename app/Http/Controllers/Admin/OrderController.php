@@ -1,4 +1,11 @@
 <?php
+
+/**
+ *  OrderController - Admin Panel
+ *  Piyush <alltimepresent@gmail.com> 
+ *  2016
+ */
+
 /*
 	Order Status Codes
 
@@ -30,8 +37,14 @@ use App\orderProduct;
 use App\Product;
 use App\regionproduct;
 
+use App\TransFormers\OrdersTransformer;
+
 class OrderController extends Controller
 {
+    public function index(){
+        $orders = Order::with('products')->paginate();
+        return $this->response->paginator($orders, new OrdersTransformer);
+    }
 
     public function cells()
     {

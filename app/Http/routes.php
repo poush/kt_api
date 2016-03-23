@@ -45,7 +45,7 @@ ApiRoute::version('v1', function(){
 		
 		ApiRoute::group(['prefix' => 'orders'], function(){
 
-			ApiRoute::get('/','OrderController@all');
+			ApiRoute::get('/','OrderController@index');
 			ApiRoute::get('stats','OrderController@stats');
 			ApiRoute::get('cells','OrderController@cells');
 			ApiRoute::get('{id}','OrderController@show');
@@ -61,6 +61,8 @@ ApiRoute::version('v1', function(){
 		ApiRoute::group(['prefix' => 'orders'],function(){
 			ApiRoute::post('place','OrderController@place');
 		});
+
+		// ApiRoute::post('contact','')
 	});
 
 });
