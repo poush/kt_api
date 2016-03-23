@@ -74,6 +74,7 @@ class OrderController extends Controller
             $product->quantity = intval($p['qty']);
             $product->price = $product->price * intval($p['qty']);
             $product->discount = $product->discount * intval($p['qty']);
+            $product->final = $product->price - $product->discount;
 
             // Attributes to do mass storage in Order_products
             $product->product_name = $product->name;
@@ -88,6 +89,7 @@ class OrderController extends Controller
 
         $order->total = $products->sum('price');
         $order->discount =  $products->sum('discount');
+        $order->final = $order->total - $order->discount;
         $order->created = \Carbon\Carbon::today()->toFormattedDateString();
         $order->save();
 
