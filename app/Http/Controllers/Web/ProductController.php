@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\regionProduct;
+use App\Transformers\ProductsTransformer;
 
 class ProductController extends Controller
 {
@@ -18,7 +19,7 @@ class ProductController extends Controller
     		'data' => $products,
     		// 'token' => csrf()
     	];
-    	return $data;
+    	return $this->response->collection($products, new ProductsTransformer);
     }
 
     public function delete($id)
