@@ -56,19 +56,13 @@ class OrderController extends Controller
         // $this->validateInput();
 
         $messages = [
-            'form.name' => [
-                'required' => ' Hey Mr.India! Please enter your name',
-                'min' => ' That\' quite big name! Please short it in :max characters '
-            ],
-            'form.email' => [
-                'required' => 'We need your email to keep in touch with you!',
-                'email' => 'We love to have your correct email id'
-            ],
-            'form.phone' => [
-                'required' => 'Your phone number required for verification. Don\'t worry we love our customers privacy',
+            'form.name.required' => ' Hey Mr.India! Please enter your name',
+            'form.name.min' => ' That\' quite big name! Please short it in :max characters ',
+            'form.email.required' => 'We need your email to keep in touch with you!',
+            'form.email.email' => 'We love to have your correct email id',
+            'form.phone.required' => 'Your phone number required for verification. Don\'t worry we love our customers privacy',
+            'form.phone.numeric' => 'Phone number should be numeric only. Ensure that you are not adding +91',
 
-                'numeric' => 'Phone number should be numeric only. Ensure that you are not adding +91'
-            ]
         ];
 
         $validator = \Validator::make($request->all(), [
@@ -77,9 +71,8 @@ class OrderController extends Controller
             'form.phone' => 'required|numeric'
         ],$messages);
         
-        
         if($validator->fails())
-            return response()->withErrors($validator);
+             throw new ValidationHttpException($validator->errors());
     	$order = new Order;
 
         $order->customer_name = $request->form['name'];
