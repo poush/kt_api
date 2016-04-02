@@ -49,11 +49,13 @@ class OrderController extends Controller
 
         // $this->validateInput();
 
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'form.name' => 'required|max:50',
             'form.email' => 'required|email',
             'form.phone' => 'required|numeric'
         ]);
+        if($validator->fails())
+            throw new Dingo\Api\Exception\StoreResourceFailedException('Could not create new user.', $validator->errors());
 
     	$order = new Order;
 
