@@ -18,6 +18,7 @@
  */
 namespace App\Http\Controllers\Web;
 
+use Dingo\Api\Exception\StoreResourceFailedException;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -41,7 +42,11 @@ class OrderController extends Controller
 	{
 		return Order::where('id',$id)->with('products')->first();
 	}
-    
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function place(Request $request)
     {
         // print_r($request->product[0]);
@@ -55,7 +60,7 @@ class OrderController extends Controller
             'form.phone' => 'required|numeric'
         ]);
         if($validator->fails())
-            throw new Dingo\Api\Exception\StoreResourceFailedException('Could not create new user.', $validator->errors());
+            throw new StoreResourceFailedException('Could not create new user.', $validator->errors());
 
     	$order = new Order;
 
