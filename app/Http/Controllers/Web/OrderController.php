@@ -49,7 +49,7 @@ class OrderController extends Controller
 
         // $this->validateInput();
 
-        $validator = Validator::make($request->all(), [
+        $validator = \Validator::make($request->all(), [
             'form.name' => 'required|max:50',
             'form.email' => 'required|email',
             'form.phone' => 'required|numeric'
