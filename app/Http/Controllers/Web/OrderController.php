@@ -19,6 +19,7 @@
 namespace App\Http\Controllers\Web;
 
 use Dingo\Api\Exception\StoreResourceFailedException;
+use Dingo\Api\Exception\ValidationHttpException;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -77,7 +78,7 @@ class OrderController extends Controller
         ],$messages);
 
         if($validator->fails())
-            throw new StoreResourceFailedException('Could not place order.', $validator->errors());
+            throw new ValidationHttpException('Could not place order.', $validator->errors());
 
     	$order = new Order;
 
