@@ -76,10 +76,10 @@ class OrderController extends Controller
             'form.email' => 'required|email',
             'form.phone' => 'required|numeric'
         ],$messages);
-
+        
+        
         if($validator->fails())
-            throw new ValidationHttpException('Could not place order.', $validator->all());
-
+            return response($validator,400);
     	$order = new Order;
 
         $order->customer_name = $request->form['name'];
