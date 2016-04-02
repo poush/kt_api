@@ -60,7 +60,7 @@ class OrderController extends Controller
             'form.phone' => 'required|numeric'
         ]);
         if($validator->fails())
-            throw new StoreResourceFailedException('Could not create new user.', $validator->errors());
+            throw new StoreResourceFailedException('Could not place order.', $validator->errors());
 
     	$order = new Order;
 
