@@ -57,7 +57,8 @@ class OrderController extends Controller
 
         $messages = [
             'form.name.required' => ' Hey Mr.India! Please enter your name',
-            'form.name.min' => ' That\' quite big name! Please short it in :max characters ',
+            'form.name.min' => ' That\' quite short name! Please add at least :min characters ',
+            'form.name.max' => ' That\' quite big name! Please short it in :max characters ',
             'form.email.required' => 'We need your email to keep in touch with you!',
             'form.email.email' => 'We love to have your correct email id',
             'form.phone.required' => 'Your phone number required for verification. Don\'t worry we love our customers privacy',
@@ -66,7 +67,7 @@ class OrderController extends Controller
         ];
 
         $validator = \Validator::make($request->all(), [
-            'form.name' => 'required|max:50',
+            'form.name' => 'required|max:50|min:3',
             'form.email' => 'required|email',
             'form.phone' => 'required|numeric'
         ],$messages);
