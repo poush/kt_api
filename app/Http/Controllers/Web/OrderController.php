@@ -78,7 +78,7 @@ class OrderController extends Controller
         ],$messages);
 
         if($validator->fails())
-            throw new ValidationHttpException('Could not place order.', $validator);
+            throw new ValidationHttpException('Could not place order.', $validator->all());
 
     	$order = new Order;
 
