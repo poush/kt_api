@@ -79,7 +79,7 @@ class OrderController extends Controller
         
         
         if($validator->fails())
-            return response($validator,400);
+            return response(400)->json($validator);
     	$order = new Order;
 
         $order->customer_name = $request->form['name'];
