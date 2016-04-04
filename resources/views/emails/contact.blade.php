@@ -1,1 +1,1 @@
-<?php dd($data) ?>
+<?php echo $data; ?>
