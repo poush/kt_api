@@ -22,10 +22,13 @@ class ContactController extends Controller
         if($validator->fails())
             throw new ValidationHttpException($validator->errors());
 
-        \Mail::send('emails.contact', ['data' => $request->message ], function ($message) {
+        $replyto = $request->email;
+
+        \Mail::send('emails.contact', ['data' => $request->message ], function ($message) use($replyto) {
             $message->from('do-not-reply@KhareedTo.com','KhareedTo.com');
             $message->subject("New Contact Request");
             $message->to('care@khareedto.com');
+            $message->replyTo($replyto);
         });
 
         return $this->response->noContent();
