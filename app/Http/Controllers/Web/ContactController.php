@@ -25,7 +25,8 @@ class ContactController extends Controller
         Mail::send('emails.contact', ['data' => $request->message ], function($m) use($request){
             $m->from('do-no-reply@kharidto.com', 'KhareedTo');
             $m->replyTo($request->email);
-            $m->to('care@khareedto.com', 'New contact request');
+            $m->subject('New Contact Request at KhareedTo');
+            $m->to('care@khareedto.com');
 
         });
 
