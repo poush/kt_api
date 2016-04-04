@@ -22,7 +22,7 @@ class ContactController extends Controller
         if($validator->fails())
             throw new ValidationHttpException($validator->errors());
 
-        \Mail::raw($request->message, function($m) use($request){
+        \Mail::send(['text' => $request->message], function($m) use($request){
             $m->from('do-no-reply@khareedto.com', 'KhareedTo');
             $m->replyTo($request->email);
             $m->subject('New Contact Request at KhareedTo');
