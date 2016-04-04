@@ -22,11 +22,13 @@ class ContactController extends Controller
         if($validator->fails())
             throw new ValidationHttpException($validator->errors());
 
-        Mail::send('emails.contact', ['data' => $request->input('message')], function($m) use($request){
-            $m->from('do-no-reply@kharidto.com', 'KhareedTo');
-//            $m->replyTo($request->input('email'));
-            $m->to('care@khareedto.com', 'New contact request');
+        return \View::make('emails.contact')->withData($request->email);
 
-        });
+//        Mail::send('emails.contact', ['data' => $request->input('message')], function($m) use($request){
+//            $m->from('do-no-reply@kharidto.com', 'KhareedTo');
+////            $m->replyTo($request->input('email'));
+//            $m->to('care@khareedto.com', 'New contact request');
+//
+//        });
     }
 }
