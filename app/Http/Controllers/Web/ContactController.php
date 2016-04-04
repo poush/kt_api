@@ -23,6 +23,7 @@ class ContactController extends Controller
             throw new ValidationHttpException($validator->errors());
 
         Mail::send('emails.contact', ['data' => $request->input('message')], function($m) use($request){
+            $m->from('do-no-reply@kharidto.com');
             $m->replyTo($request->email);
             $m->to('care@khareedto.com', 'New contact request');
 
