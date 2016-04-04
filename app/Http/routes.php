@@ -57,6 +57,7 @@ ApiRoute::version('v1', function(){
 	ApiRoute::group(['prefix' => 'web', 'namespace' => 'App\Http\Controllers\Web'], function(){
 
 		ApiRoute::get('products','ProductController@show');
+		ApiRoute::get('sendContact','ContactController@sendForm');
 
 		ApiRoute::group(['prefix' => 'orders'],function(){
 			ApiRoute::post('place','OrderController@place');

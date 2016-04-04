@@ -39,10 +39,11 @@ class OrderController extends Controller
     {
         return $this->response->paginator(Order::paginate());
     }
+
     public function show($id)
-	{
-		return Order::where('id',$id)->with('products')->first();
-	}
+    {
+        return Order::where('id', $id)->with('products')->first();
+    }
 
     /**
      * @param Request $request
@@ -70,11 +71,11 @@ class OrderController extends Controller
             'form.name' => 'required|max:50|min:3',
             'form.email' => 'required|email',
             'form.phone' => 'required|numeric'
-        ],$messages);
-        
-        if($validator->fails())
-             throw new ValidationHttpException($validator->errors());
-    	$order = new Order;
+        ], $messages);
+
+        if ($validator->fails())
+            throw new ValidationHttpException($validator->errors());
+        $order = new Order;
 
         $order->customer_name = $request->form['name'];
         $order->customer_email = $request->form['email'];
@@ -83,12 +84,11 @@ class OrderController extends Controller
         $order->region_id = 1;
         $products = [];
 
-        foreach($request->products as $p)
-        {
-            $product = Product::where('code',$p['code'])
-                            ->join('region_products as rp','rp.product_id','=','products.id')
-                            ->where('rp.region_id',1)
-                            ->first();
+        foreach ($request->products as $p) {
+            $product = Product::where('code', $p['code'])
+                ->join('region_products as rp', 'rp.product_id', '=', 'products.id')
+                ->where('rp.region_id', 1)
+                ->first();
 
             $product->quantity = intval($p['qty']);
             $product->price = $product->price * intval($p['qty']);
@@ -107,7 +107,7 @@ class OrderController extends Controller
         $products = collect($products);
 
         $order->total = $products->sum('price');
-        $order->discount =  $products->sum('discount');
+        $order->discount = $products->sum('discount');
         $order->final = $order->total - $order->discount;
         $order->created = \Carbon\Carbon::today()->toFormattedDateString();
         $order->save();
@@ -121,47 +121,43 @@ class OrderController extends Controller
             $product['order_id'] = $order->id;
             orderProduct::create($product);
 
-            $raw_products .= "\n" .$product['name']  ."|  qty: ".$product['quantity'] ."| price: Rs.". ($product['price'] - $product['discount']);
+            $raw_products .= "\n" . $product['name'] . "|  qty: " . $product['quantity'] . "| price: Rs." . ($product['price'] - $product['discount']);
         }
 
 
-
-       event(new OrderPlaced($order,$raw_products));
+        event(new OrderPlaced($order, $raw_products));
 
         return response()->json([$order->price, $order->status]);
 
 
-
-
     }
 
-    public function cancel($id){
-    	$order = Order::where('id' ,$id)->update(['status' => 5]);
-
-    	if($order)
-    		return response()->json(['status' => 'success']);
-    }
-
-    public function generateOTP($number){
-    	$otp = 'ABCD';
-    	
-    	$number = Number::firstOrNew(['number' => $number]);
-
-    	$number->otp = $otp;
-    	$number->save();
-    }
-
-    public function verifyOTP($number,$otp)
+    public function cancel($id)
     {
-    	$number = Number::where($number)->first();
-    	
-    	if($number->otp == $otp)
-    	{
-    		$number->status = 1;
-    		$number->save();
-    	}
-    	else
-    		return response('Invalid either OTP or mobile', 400);
+        $order = Order::where('id', $id)->update(['status' => 5]);
+
+        if ($order)
+            return response()->json(['status' => 'success']);
     }
 
+    public function generateOTP($number)
+    {
+        $otp = 'ABCD';
+
+        $number = Number::firstOrNew(['number' => $number]);
+
+        $number->otp = $otp;
+        $number->save();
+    }
+
+    public function verifyOTP($number, $otp)
+    {
+        $number = Number::where($number)->first();
+
+        if ($number->otp == $otp) {
+            $number->status = 1;
+            $number->save();
+        } else
+            return response('Invalid either OTP or mobile', 400);
+    }
 }
