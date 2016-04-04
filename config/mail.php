@@ -80,8 +80,7 @@ return [
     |
     */
 
-    'username' => 'do-not-reply@kharidto.com',
-    //env('MAIL_USERNAME'),
+    'username' => env('MAIL_USERNAME'),
 
     /*
     |--------------------------------------------------------------------------
@@ -94,8 +93,7 @@ return [
     |
     */
 
-    'password' => '246%^@',
-    // env('MAIL_PASSWORD'),
+    'password' => env('MAIL_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------
