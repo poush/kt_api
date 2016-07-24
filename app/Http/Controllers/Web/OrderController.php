@@ -90,7 +90,7 @@ class OrderController extends Controller
                 ->where('rp.region_id', 1)
                 ->first();
 
-            $product->quantity = intval($p['qty']);
+            $product->quantity = intval($p['qty']); 
             $product->price = $product->price * intval($p['qty']);
             $product->discount = $product->discount * intval($p['qty']);
             $product->final = $product->price - $product->discount;
@@ -125,7 +125,7 @@ class OrderController extends Controller
         }
 
 
-        event(new OrderPlaced($order, $raw_products));
+        event(new OrderPlaced($order, $raw_products, $products));
 
         return response()->json([$order->price, $order->status]);
 

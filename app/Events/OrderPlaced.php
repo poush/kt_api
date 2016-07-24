@@ -18,10 +18,11 @@ class OrderPlaced extends Event
      *
      * @return void
      */
-    public function __construct($order,$products)
+    public function __construct($order, $products, $raw_products)
     {
         $this->order = $order;
         $this->products = $products;
+        $this->raw_products = $raw_products;
     }
 
     /**

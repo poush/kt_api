@@ -11,7 +11,6 @@
         <table class="table tsble-bordered" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;border-collapse:collapse;border-spacing:0;background-color:transparent;width:100%;max-width:100%;margin-bottom:20px;" >
             <thead style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;" >
                 <tr style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;" >
-                  <th style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;text-align:left;padding-top:8px;padding-bottom:8px;padding-right:8px;padding-left:8px;line-height:1.42857143;border-top-width:1px;border-top-style:solid;border-top-color:#dddddd;vertical-align:bottom;border-bottom-width:2px;border-bottom-style:solid;border-bottom-color:#dddddd;" >Order No.</th>
                   <th style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;text-align:left;padding-top:8px;padding-bottom:8px;padding-right:8px;padding-left:8px;line-height:1.42857143;border-top-width:1px;border-top-style:solid;border-top-color:#dddddd;vertical-align:bottom;border-bottom-width:2px;border-bottom-style:solid;border-bottom-color:#dddddd;" >Product</th>
                   <th style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;text-align:left;padding-top:8px;padding-bottom:8px;padding-right:8px;padding-left:8px;line-height:1.42857143;border-top-width:1px;border-top-style:solid;border-top-color:#dddddd;vertical-align:bottom;border-bottom-width:2px;border-bottom-style:solid;border-bottom-color:#dddddd;" >Quantity</th>
                   <th style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;text-align:left;padding-top:8px;padding-bottom:8px;padding-right:8px;padding-left:8px;line-height:1.42857143;border-top-width:1px;border-top-style:solid;border-top-color:#dddddd;vertical-align:bottom;border-bottom-width:2px;border-bottom-style:solid;border-bottom-color:#dddddd;" >Rate</th>
@@ -19,13 +18,14 @@
                 </tr>
             </thead>
             <tbody style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;" >
+                @foreach($products as $product)
               <tr style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;" >
-                  <td style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding-top:8px;padding-bottom:8px;padding-right:8px;padding-left:8px;line-height:1.42857143;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#dddddd;" >example</td>
-                  <td style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding-top:8px;padding-bottom:8px;padding-right:8px;padding-left:8px;line-height:1.42857143;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#dddddd;" >example</td>
-                  <td style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding-top:8px;padding-bottom:8px;padding-right:8px;padding-left:8px;line-height:1.42857143;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#dddddd;" >example</td>
-                  <td style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding-top:8px;padding-bottom:8px;padding-right:8px;padding-left:8px;line-height:1.42857143;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#dddddd;" >example</td>
-                  <td style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding-top:8px;padding-bottom:8px;padding-right:8px;padding-left:8px;line-height:1.42857143;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#dddddd;" >example</td>    
-        </tr>
+                  <td style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding-top:8px;padding-bottom:8px;padding-right:8px;padding-left:8px;line-height:1.42857143;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#dddddd;" >{{$product->name}}</td>
+                  <td style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding-top:8px;padding-bottom:8px;padding-right:8px;padding-left:8px;line-height:1.42857143;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#dddddd;" >{{$product->qty}}</td>
+                  <td style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding-top:8px;padding-bottom:8px;padding-right:8px;padding-left:8px;line-height:1.42857143;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#dddddd;" >{{$product->sprice}}</td>
+                  <td style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding-top:8px;padding-bottom:8px;padding-right:8px;padding-left:8px;line-height:1.42857143;vertical-align:top;border-top-width:1px;border-top-style:solid;border-top-color:#dddddd;" >{{$product->total}}</td>
+            </tr>
+              @endforeach
       </tbody>
         </table>
 
