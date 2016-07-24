@@ -127,7 +127,7 @@ class OrderController extends Controller
 
         event(new OrderPlaced($order, $raw_products, $products));
 
-        return response()->json([$order->price, $order->status]);
+        return response()->json([$order->final, 1]);
 
 
     }
