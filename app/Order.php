@@ -13,7 +13,7 @@ class Order extends Model
     public static function generateNumber($length = 6) {
     	$number = substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
 
-    	if( !Order::where('number', $number)->first()->isEmpty() )
+    	if( ! is_null(Order::where('number', $number)->first()) )
     		return self::generateNumber();
 
     	return $number;
