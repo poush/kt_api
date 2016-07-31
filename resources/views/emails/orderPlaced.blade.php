@@ -357,7 +357,7 @@
                                 {{ $order['created'] }} <br style="font-family: 'Oxygen', 'Helvetica Neue', 'Arial', 'sans-serif' !important;">
                                 <br style="font-family: 'Oxygen', 'Helvetica Neue', 'Arial', 'sans-serif' !important;">
                                 <span class="header-sm" style="font-family: 'Oxygen', 'Helvetica Neue', 'Arial', 'sans-serif' !important;font-size: 18px;font-weight: 700;line-height: 1.3;padding: 5px 0;color: #4d4d4d;">Order</span> <br style="font-family: 'Oxygen', 'Helvetica Neue', 'Arial', 'sans-serif' !important;">
-                                #{{ $order['id'] }}
+                                #{{ $order['number'] }}
                               </td>
                             </tr>
                           </table>
