@@ -75,15 +75,17 @@ class OrderController extends Controller
 
         if ($validator->fails())
             throw new ValidationHttpException($validator->errors());
+
+        // Order Process
         $order = new Order;
 
         $order->customer_name = $request->form['name'];
         $order->customer_email = $request->form['email'];
         $order->customer_number = $request->form['phone'];
-
         $order->region_id = 1;
-        $products = [];
 
+
+        $products = [];
         foreach ($request->products as $p) {
             $product = Product::where('code', $p['code'])
                 ->join('region_products as rp', 'rp.product_id', '=', 'products.id')
@@ -109,6 +111,7 @@ class OrderController extends Controller
         $order->total = $products->sum('price');
         $order->discount = $products->sum('discount');
         $order->final = $order->total - $order->discount;
+        $order->number = Order::generateNumber();
         $order->created = \Carbon\Carbon::today()->toFormattedDateString();
         $order->save();
 
