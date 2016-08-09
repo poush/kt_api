@@ -17,9 +17,9 @@ class ProductsTransformer extends \League\Fractal\TransformerAbstract
             'name'  => $product->product['name'],
             'price'     => $product->price,
             'sprice'    => $product->price - $product->discount,
-            'discount'  => $product->discount
+            'discount'  => $product->discount,
+            'stock'     => $product->stock
 
     	];
     }
 }
-
